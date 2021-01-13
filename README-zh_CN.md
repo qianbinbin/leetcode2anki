@@ -1,14 +1,12 @@
 # lc2anki
 
-[中文说明](README-zh_CN.md)
+lc2anki 是一个为 LeetCode 生成 Anki 卡片的工具。
 
-lc2anki is a tool generating Anki cards for LeetCode.
+卡片模板来自：<https://github.com/invzhi/LeetCode>
 
-Card template from: <https://github.com/invzhi/LeetCode>
+## 使用
 
-## Usage
-
-### 1. Generate cards
+### 1. 生成卡片
 
 ```sh
 $ python3 lc2anki.py -h
@@ -32,16 +30,16 @@ question options:
                         specify question ids or titles from FILE split by lines
 ```
 
-#### Examples
+#### 示例
 
-From url:
+指定 url：
 
 ```sh
 $ python3 lc2anki.py --lang Python3 --url https://leetcode.com/problemset/top-100-liked-questions/
 $ python3 lc2anki.py -l Java -u https://leetcode.com/tag/array/
 ```
 
-From specific questions:
+指定题目：
 
 ```sh
 $ python3 lc2anki.py --question 1
@@ -53,7 +51,7 @@ $ python3 lc2anki.py -q "Add Two Numbers"
 $ python3 lc2anki.py -q two-sum "Add Two Numbers" 3-100
 ```
 
-From questions in file:
+用文件指定题目：
 
 ```sh
 $ cat q.txt
@@ -63,16 +61,16 @@ Add Two Numbers
 $ python3 lc2anki.py -i q.txt
 ```
 
-### 2. Add note type
+### 2. 添加笔记类型
 
-Add new note type "LeetCode".
+添加笔记类型“LeetCode”。
 
-Set card template with [front template](template/front-template.html), [back template](template/back-template.html) and [styling](template/styling.css).
+设置卡片模板，[正面模板](template/front-template.html)、[背面模板](template/back-template.html)和[样式](template/styling.css)。
 
-Set fields:
+设置字段：
 
 ![](fields.png)
 
-### 3. Import cards
+### 3. 导入卡片
 
 ![](import.png)
