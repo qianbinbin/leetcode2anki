@@ -2,9 +2,11 @@
 
 [中文说明](README-zh_CN.md)
 
-lc2anki is a tool generating Anki cards for LeetCode.
+lc2anki is a tool generating Anki cards for LeetCode. Questions only, no solutions.
 
 Card template from: <https://github.com/invzhi/LeetCode>
+
+![](preview.png)
 
 ## Usage
 

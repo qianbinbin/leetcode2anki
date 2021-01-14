@@ -1,8 +1,10 @@
 # lc2anki
 
-lc2anki 是一个为 LeetCode 生成 Anki 卡片的工具。
+lc2anki 是一个为 LeetCode 生成 Anki 卡片的工具。仅题目，无题解。
 
 卡片模板来自：<https://github.com/invzhi/LeetCode>
+
+![](preview.png)
 
 ## 使用
 
