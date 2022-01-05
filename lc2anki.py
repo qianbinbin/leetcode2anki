@@ -159,6 +159,30 @@ def get_title_slugs_by_list(_list: str = None) -> List[str]:
     return [q['title_slug'] for q in questions]
 
 
+POST_DATA_PROBLEM_LIST = {
+    "query": "\n    query problemsetQuestionList($categorySlug: String, $limit: Int, $skip: Int, $filters: QuestionListFilterInput) {\n  problemsetQuestionList: questionList(\n    categorySlug: $categorySlug\n    limit: $limit\n    skip: $skip\n    filters: $filters\n  ) {\n    total: totalNum\n    questions: data {\n      acRate\n      difficulty\n      freqBar\n      frontendQuestionId: questionFrontendId\n      isFavor\n      paidOnly: isPaidOnly\n      status\n      title\n      titleSlug\n      topicTags {\n        name\n        id\n        slug\n      }\n      hasSolution\n      hasVideoSolution\n    }\n  }\n}\n    ",
+    "variables": {
+        "categorySlug": "",
+        "skip": 0,
+        "limit": 1000000,  # LeetCode is unhappy if too large
+        "filters": {
+            "listId": "93afdecd8402495fa94c8fb4b98be8fd"
+        }
+    }
+}
+
+
+def get_title_slugs_by_problem_list(pl: str = None) -> List[str]:
+    logging.debug('getting by problem list: {}'.format(pl))
+    headers = HEADERS
+    headers['Content-Type'] = 'application/json'
+    post_data = POST_DATA_PROBLEM_LIST
+    post_data['variables']['filters']['listId'] = pl
+    content = post_content(URL_QUERY, json.dumps(post_data).encode('utf-8'), headers)
+    questions = json.loads(content)['data']['problemsetQuestionList']['questions']
+    return [q['titleSlug'] for q in questions]
+
+
 def match_group1(pattern: str, string) -> str:
     m = re.match(pattern, string)
     if m:
@@ -176,6 +200,9 @@ def get_title_slugs_by_url(url: str = None) -> List[str]:
     _list = match_group1(r'https?://leetcode.com/list/([^\s/]+)\S*$', url)
     if _list:
         return get_title_slugs_by_list(_list)
+    _pl = match_group1(r'https?://leetcode.com/problem-list/([^\s/]+)\S*$', url)
+    if _pl:
+        return get_title_slugs_by_problem_list(_pl)
     logging.error('unknown url: {}'.format(url))
 
 
@@ -233,7 +260,8 @@ def parse_args():
         help='generate cards from link, for example: {}'.format(', '.join([
             'https://leetcode.com/tag/array/',
             'https://leetcode.com/problemset/top-100-liked-questions/',
-            'https://leetcode.com/list/foobar/'
+            'https://leetcode.com/list/foobar/',
+            'https://leetcode.com/problem-list/93afdecd8402495fa94c8fb4b98be8fd'
         ]))
     )
     question_group.add_argument(

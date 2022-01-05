@@ -21,13 +21,18 @@ class TestLeetCodeAPI(unittest.TestCase):
     def test_get_title_slugs_by_list(self):
         logging.debug(get_title_slugs_by_list('g71kzvs'))
 
+    def test_get_title_slugs_by_problem_list(self):
+        logging.debug(get_title_slugs_by_problem_list('93afdecd8402495fa94c8fb4b98be8fd'))
+
     def test_get_titles_by_url(self):
         tag_url = 'https://leetcode.com/tag/array/'
         set_url = 'https://leetcode.com/problemset/top-100-liked-questions/'
         list_url = 'https://leetcode.com/list/g71kzvs/'
+        problem_list_url = 'https://leetcode.com/problem-list/93afdecd8402495fa94c8fb4b98be8fd/'
         logging.debug(get_title_slugs_by_url(tag_url))
         logging.debug(get_title_slugs_by_url(set_url))
         logging.debug(get_title_slugs_by_url(list_url))
+        logging.debug(get_title_slugs_by_url(problem_list_url))
 
     def test_get_all_list(self):
         all_list = get_all_list()
