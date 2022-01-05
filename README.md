@@ -26,8 +26,8 @@ optional arguments:
   -d, --debug           show debug info
 
 question options:
-  -u URL, --url URL     generate cards from link, for example: https://leetcode.com/tag/array/, https://leetcode.com/problemset/top-100-liked-
-                        questions/, https://leetcode.com/list/foobar/
+  -u URL, --url URL     generate cards from link, for example: https://leetcode.com/tag/array/, https://leetcode.com/problemset/top-100-liked-questions/,
+                        https://leetcode.com/list/foobar/, https://leetcode.com/problem-list/93afdecd8402495fa94c8fb4b98be8fd
   -q [QUESTION ...], --question [QUESTION ...]
                         specify question id or title slug, for example: 1, two-sum, 1-100
   -i FILE, --input-file FILE
@@ -39,7 +39,7 @@ question options:
 From url:
 
 ```sh
-$ python3 lc2anki.py --lang Python3 --url https://leetcode.com/problemset/top-100-liked-questions/
+$ python3 lc2anki.py --lang Python3 --url https://leetcode.com/problem-list/93afdecd8402495fa94c8fb4b98be8fd
 $ python3 lc2anki.py -l Java -u https://leetcode.com/tag/array/
 ```
 
